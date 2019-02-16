@@ -13,7 +13,8 @@
     "authors": [
         {
             "name": "Michal Haracewiat",
-            "email": "contact@haracewiat.pl"
+            "email": "admin@haracewiat.pl",
+            "role": "maintainer"
         }
     ],
     "support": {
