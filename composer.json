@@ -1,0 +1,47 @@
+{
+    "name": "haru0/eloquent-sql-dumper",
+    "description": "Eloquent SQL dumper for Laravel",
+    "keywords": [
+        "laravel",
+        "package",
+        "eloquent",
+        "sql",
+        "bindings",
+        "dump"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michal Haracewiat",
+            "email": "contact@haracewiat.pl"
+        }
+    ],
+    "support": {
+        "email": "contact@haracewiat.pl",
+        "issues": "https://github.com/Haru0/eloquent-sql-dumper/issues",
+        "wiki": "https://github.com/Haru0/eloquent-sql-dumper/wiki",
+        "source": "https://github.com/Haru0/eloquent-sql-dumper"
+    },
+    "require-dev": {
+        "laravel/framework": "5.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Haru0\\EloquentSqlDumper\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Haru0\\EloquentSqlDumper\\ServiceProvider"
+            ]
+        }
+    }
+}
