@@ -23,7 +23,7 @@ class Dumper implements DumperContract
     {
         $sql = $builder->toSql();
 
-        foreach ($builder->getBindings() as $binding) {
+        foreach ($builder->getConnection()->prepareBindings($builder->getBindings()) as $binding) {
             $sql = Str::replaceFirst('?', (is_numeric($binding) ? $binding : sprintf('"%s"', $binding)), $sql);
         }
 
