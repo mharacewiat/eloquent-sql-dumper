@@ -7,7 +7,12 @@
         "eloquent",
         "sql",
         "bindings",
-        "dump"
+        "debugging",
+        "debug",
+        "logging",
+        "log",
+        "macro"
+
     ],
     "license": "MIT",
     "authors": [
