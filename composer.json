@@ -36,6 +36,11 @@
             "Haru0\\EloquentSqlDumper\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Haru0\\EloquentSqlDumper\\Tests": "tests/"
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
