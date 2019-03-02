@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/Haru0/eloquent-sql-dumper.svg?style=svg)](https://circleci.com/gh/Haru0/eloquent-sql-dumper) 
 [![SymfonyInsight](https://insight.symfony.com/projects/435fee6e-6c83-4fc0-a49e-5a6b6ffef2a6/mini.svg)](https://insight.symfony.com/projects/435fee6e-6c83-4fc0-a49e-5a6b6ffef2a6)
 
 ## Eloquent SQL dumper
