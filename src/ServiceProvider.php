@@ -9,6 +9,8 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 /**
  * ServiceProvider class.
  *
+ * @codeCoverageIgnore
+ *
  * @package Haru0\EloquentSqlDumper
  * @author Michal Haracewiat <admin@haracewiat.pl>
  */
@@ -18,17 +20,31 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Bootstrap any application services.
      *
-     * @param DumperContract $dumper
-     *
      * @return void
      */
-    public function boot(DumperContract $dumper)
+    public function boot()
+    {
+        if (false === $this->app->runningInConsole()) {
+            return;
+        }
+
+        $this->publishes([
+            __DIR__ . '/../config/eloquent-sql-dumper.php' => config_path('eloquent-sql-dumper.php'),
+        ], 'config');
+    }
+
+    /**
+     * Register the application services.
+     *
+     * @param DumperContract $dumper
+     * @return void
+     */
+    public function register(DumperContract $dumper)
     {
         Builder::macro('dump', function () use ($dumper) {
             /** @var Builder $this */
             return $dumper->dump($this);
         });
-
     }
 
 }

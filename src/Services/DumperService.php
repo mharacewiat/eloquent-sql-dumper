@@ -3,6 +3,8 @@
 namespace Haru0\EloquentSqlDumper\Services;
 
 use Haru0\EloquentSqlDumper\Contracts\DumperContract;
+use Haru0\EloquentSqlDumper\Events\AfterDumpEvent;
+use Haru0\EloquentSqlDumper\Events\BeforeDumpEvent;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Str;
 
@@ -21,6 +23,22 @@ class DumperService implements DumperContract
      */
     public function dump(Builder $builder): string
     {
+        event(new BeforeDumpEvent($builder));
+
+        $sql = $this->bindValues($builder);
+
+        event(new AfterDumpEvent($sql, $builder));
+
+        return $sql;
+    }
+
+
+    /**
+     * @param Builder $builder
+     * @return string
+     */
+    protected function bindValues(Builder $builder): string
+    {
         $sql = $builder->toSql();
 
         foreach ($this->getBindings($builder) as $binding) {
@@ -31,6 +49,8 @@ class DumperService implements DumperContract
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param Builder $builder
      * @return iterable
      */
