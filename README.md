@@ -33,7 +33,7 @@ No configuration options available.
 
 ## Usage
 
-`Haru0\EloquentSqlDumper\Services\DumperService`, once registered, can be basically used anywhere. It is also easily **overrideable**.
+`Haru0\EloquentSqlDumper\Services\DumperService`, once registered, can be basically used anywhere. It is also easily **overrideable** and **extensible**.
 
 Example `routes/web.php` file:
 
@@ -76,9 +76,11 @@ Psy Shell v0.9.9 (PHP 7.3.2-3+ubuntu18.04.1+deb.sury.org+1 — cli) by Justin Hi
 => "select * from `users` where `active` = 1 and (`email` like '%gmail.com' or `email` like '%example.com') order by `id` desc limit 10"
 ```
 
-## Overriding
+## Overriding and extending 
 
-If you need to adjust or override `Haru0\EloquentSqlDumper\Services\DumperService` functionality, you're welcome to **bind implementation to the contract**.
+If you need to adjust or override `Haru0\EloquentSqlDumper\Services\DumperService` functionality, you're welcome to either **bind implementation to the contract**, or **register listener** to the two events dispatched by the service. 
+
+Depending on your needs, one of the ways of customizing `dump` macro, is to write your own `DumperService` and bind it to the `Haru0\EloquentSqlDumper\Contracts\DumperContract`.
 
 ```php
 use App\Services\MyDumper;
@@ -86,6 +88,16 @@ use Haru0\EloquentSqlDumper\Contracts\DumperContract;
 
 $this->app->bind(DumperContract::class, MyDumper::class);
 ```
+
+Other way of customizing `dump` macro is to register a [listener](https://laravel.com/docs/5.7/events#defining-listeners) or [subscriber](https://laravel.com/docs/5.7/events#event-subscribers) to the `Haru0\EloquentSqlDumper\Events\AfterDumpEvent` and `Haru0\EloquentSqlDumper\Events\BeforeDumpEvent` events. 
+
+Finally, you can modify macro name (in case it collides with existing one). To do so, adjust configuration option or put `ELOQUENT_SQL_DUMPER_MACRO` environment variable into your `.env` file.
+
+```dotenv
+ELOQUENT_SQL_DUMPER_MACRO=fancy_dump
+```
+
+and then, use it the same way `dump` was shown in the [Usage](#Usage) chapter.
 
 ## Contribute
 
