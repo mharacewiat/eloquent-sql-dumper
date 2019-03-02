@@ -1,13 +1,13 @@
 <?php
 
-namespace Haru0\EloquentSqlDumper\Tests\Services;
+namespace Haru0\EloquentSqlDumper\Tests\Unit\Services;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * DumperServiceTest class.
  *
- * @package Haru0\EloquentSqlDumper\Tests\Services
+ * @package Haru0\EloquentSqlDumper\Tests\Unit\Services
  * @author Michal Haracewiat <admin@haracewiat.pl>
  */
 class DumperServiceTest extends TestCase
