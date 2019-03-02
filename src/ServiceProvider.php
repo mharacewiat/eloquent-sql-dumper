@@ -2,7 +2,7 @@
 
 namespace Haru0\EloquentSqlDumper;
 
-use Haru0\EloquentSqlDumper\Services\Dumper;
+use Haru0\EloquentSqlDumper\Contracts\DumperContract;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
@@ -18,15 +18,17 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Bootstrap any application services.
      *
-     * @param Dumper $dumper
+     * @param DumperContract $dumper
+     *
      * @return void
      */
-    public function boot(Dumper $dumper)
+    public function boot(DumperContract $dumper)
     {
         Builder::macro('dump', function () use ($dumper) {
             /** @var Builder $this */
             return $dumper->dump($this);
         });
+
     }
 
 }
