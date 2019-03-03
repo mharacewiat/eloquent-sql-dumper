@@ -29,17 +29,9 @@ class AfterDumpEvent extends DumpEvent
     {
         parent::__construct($builder);
 
-        $this->sql = $sql;
+        $this->sql = & $sql;
     }
 
-
-    /**
-     * @return string
-     */
-    public function getSql(): string
-    {
-        return $this->sql;
-    }
 
     /**
      * @param string $sql

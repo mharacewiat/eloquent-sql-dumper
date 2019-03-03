@@ -18,11 +18,6 @@ class AfterDumpEventTest extends TestCase
         $this->markTestIncomplete();
     }
 
-    public function testGetSql()
-    {
-        $this->markTestIncomplete();
-    }
-
     public function testSetSql()
     {
         $this->markTestIncomplete();
