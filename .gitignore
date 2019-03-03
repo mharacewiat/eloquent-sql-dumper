@@ -1,2 +1,5 @@
+*.cache
 /.idea
+/phpdocker
 /vendor
+/docker-compose.yml

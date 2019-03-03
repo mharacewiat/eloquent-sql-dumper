@@ -5,12 +5,12 @@ namespace Haru0\EloquentSqlDumper\Contracts;
 use Illuminate\Database\Query\Builder;
 
 /**
- * Dumper interface.
+ * DumperContract interface.
  *
  * @package Haru0\EloquentSqlDumper\Services
  * @author Michal Haracewiat <admin@haracewiat.pl>
  */
-interface Dumper
+interface DumperContract
 {
 
     /**
