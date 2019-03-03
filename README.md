@@ -98,7 +98,9 @@ Finally, you can modify macro name (in case it collides with existing one). To d
 ELOQUENT_SQL_DUMPER_MACRO=foo_bar_baz
 ```
 
-and then, use it the same way `dump` was shown in the [Usage](#Usage) chapter.
+> You can change that environment by overriding configuration file. Do do so, you need to publish package configuration file `php artisan vendor:publish --provider=Haru0\EloquentSqlDumper\ServiceProvider`. 
+
+Then, use it the same way `dump` was shown in the [Usage](#Usage) chapter.
 
 > Macro name is **always** casted to [Camel case](https://en.wikipedia.org/wiki/Camel_case). In this example above, your macro will be executed by `$query->fooBarBaz`.
 
