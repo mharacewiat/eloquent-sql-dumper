@@ -2,6 +2,8 @@
 
 namespace Haru0\EloquentSqlDumper\Tests\Unit\Events;
 
+use Haru0\EloquentSqlDumper\Events\AfterDumpEvent;
+use Illuminate\Database\Query\Builder;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,12 +17,27 @@ class AfterDumpEventTest extends TestCase
 
     public function testConstructor()
     {
-        $this->markTestIncomplete();
+        $sql   = 'foo';
+        $event = new AfterDumpEvent($sql, $this->createMock(Builder::class));
+
+        $reflection = new \ReflectionProperty(AfterDumpEvent::class, 'sql');
+        $reflection->setAccessible(true);
+
+        $this->assertSame($sql, $reflection->getValue($event));
     }
 
     public function testSetSql()
     {
-        $this->markTestIncomplete();
+        $event = $this->createPartialMock(AfterDumpEvent::class, []);
+
+        $reflection = new \ReflectionProperty(AfterDumpEvent::class, 'sql');
+        $reflection->setAccessible(true);
+        $reflection->setValue($event, 'foo');
+
+        /** @var AfterDumpEvent $event */
+
+        $event->setSql($sql = 'bar');
+        $this->assertSame($sql, $reflection->getValue($event));
     }
 
 }

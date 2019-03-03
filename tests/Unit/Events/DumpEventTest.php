@@ -2,6 +2,8 @@
 
 namespace Haru0\EloquentSqlDumper\Tests\Unit\Events;
 
+use Haru0\EloquentSqlDumper\Events\DumpEvent;
+use Illuminate\Database\Query\Builder;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,12 +17,30 @@ class DumpEventTest extends TestCase
 
     public function testConstructor()
     {
-        $this->markTestIncomplete();
+        $event = $this
+            ->getMockBuilder(DumpEvent::class)
+            ->setConstructorArgs([
+                ($builder = $this->createMock(Builder::class))
+            ])
+            ->getMock();
+
+        $reflection = new \ReflectionProperty(DumpEvent::class, 'builder');
+        $reflection->setAccessible(true);
+
+        $this->assertSame($builder, $reflection->getValue($event));
     }
 
     public function testGetBuilder()
     {
-        $this->markTestIncomplete();
+        $event = $this->getMockForAbstractClass(DumpEvent::class, [], '', $callOriginalConstructor = false);
+
+        $reflection = new \ReflectionProperty(DumpEvent::class, 'builder');
+        $reflection->setAccessible(true);
+        $reflection->setValue($event, ($builder = $this->createMock(Builder::class)));
+
+        /** @var DumpEvent $event */
+
+        $this->assertSame($builder, $event->getBuilder($event));
     }
 
 }
