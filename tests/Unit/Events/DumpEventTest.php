@@ -40,7 +40,7 @@ class DumpEventTest extends TestCase
 
         /** @var DumpEvent $event */
 
-        $this->assertSame($builder, $event->getBuilder($event));
+        $this->assertSame($builder, $event->getBuilder());
     }
 
 }

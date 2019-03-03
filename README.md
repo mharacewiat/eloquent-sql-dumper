@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/Haru0/eloquent-sql-dumper.svg?style=svg)](https://circleci.com/gh/Haru0/eloquent-sql-dumper) 
+[![CircleCI](https://circleci.com/gh/Haru0/eloquent-sql-dumper.svg?style=svg)](https://circleci.com/gh/Haru0/eloquent-sql-dumper)
 [![SymfonyInsight](https://insight.symfony.com/projects/435fee6e-6c83-4fc0-a49e-5a6b6ffef2a6/mini.svg)](https://insight.symfony.com/projects/435fee6e-6c83-4fc0-a49e-5a6b6ffef2a6)
 
 ## Eloquent SQL dumper
@@ -74,12 +74,12 @@ Psy Shell v0.9.9 (PHP 7.3.2-3+ubuntu18.04.1+deb.sury.org+1 — cli) by Justin Hi
 ...     ->orderByDesc('id') \
 ...     ->limit(10) \
 ...     ->dump()
-=> "select * from `users` where `active` = 1 and (`email` like '%gmail.com' or `email` like '%example.com') order by `id` desc limit 10"
+=> "select * from `users` where `active` = 1 and (`email` like "%gmail.com" or `email` like "%example.com") order by `id` desc limit 10"
 ```
 
-## Overriding and extending 
+## Overriding and extending
 
-If you need to adjust or override `Haru0\EloquentSqlDumper\Services\DumperService` functionality, you're welcome to either **bind implementation to the contract**, or **register listener** to the two events dispatched by the service. 
+If you need to adjust or override `Haru0\EloquentSqlDumper\Services\DumperService` functionality, you're welcome to either **bind implementation to the contract**, or **register listener** to the two events dispatched by the service.
 
 Depending on your needs, one of the ways of customizing `dump` macro, is to write your own `DumperService` and bind it to the `Haru0\EloquentSqlDumper\Contracts\DumperContract`.
 
@@ -90,7 +90,7 @@ use Haru0\EloquentSqlDumper\Contracts\DumperContract;
 $this->app->bind(DumperContract::class, MyDumper::class);
 ```
 
-Other way of customizing `dump` macro is to register a [listener](https://laravel.com/docs/5.7/events#defining-listeners) or [subscriber](https://laravel.com/docs/5.7/events#event-subscribers) to the `Haru0\EloquentSqlDumper\Events\AfterDumpEvent` and `Haru0\EloquentSqlDumper\Events\BeforeDumpEvent` events. 
+Other way of customizing `dump` macro is to register a [listener](https://laravel.com/docs/5.7/events#defining-listeners) or [subscriber](https://laravel.com/docs/5.7/events#event-subscribers) to the `Haru0\EloquentSqlDumper\Events\AfterDumpEvent` and `Haru0\EloquentSqlDumper\Events\BeforeDumpEvent` events.
 
 Finally, you can modify macro name (in case it collides with existing one). To do so, adjust configuration option or put `ELOQUENT_SQL_DUMPER_MACRO` environment variable into your `.env` file.
 
@@ -98,7 +98,7 @@ Finally, you can modify macro name (in case it collides with existing one). To d
 ELOQUENT_SQL_DUMPER_MACRO=foo_bar_baz
 ```
 
-> You can change that environment by overriding configuration file. Do do so, you need to publish package configuration file `php artisan vendor:publish --provider=Haru0\EloquentSqlDumper\ServiceProvider`. 
+> You can change that environment by overriding configuration file. Do do so, you need to publish package configuration file `php artisan vendor:publish --provider=Haru0\EloquentSqlDumper\ServiceProvider`.
 
 Then, use it the same way `dump` was shown in the [Usage](#Usage) chapter.
 
