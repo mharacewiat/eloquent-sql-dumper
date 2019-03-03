@@ -19,17 +19,38 @@ class DumperService implements DumperContract
 
     /**
      * @param Builder $builder
+     *
      * @return string
      */
     public function dump(Builder $builder): string
     {
-        event(new BeforeDumpEvent($builder));
-
+        $this->fireBeforeEvent($builder);
         $sql = $this->bindValues($builder);
-
-        event(new AfterDumpEvent($sql, $builder));
+        $this->fireAfterEvent($sql, $builder);
 
         return $sql;
+    }
+
+
+    /**
+     * @codeCoverageIgnore
+     *
+     * @param Builder $builder
+     */
+    protected function fireBeforeEvent(Builder $builder): void
+    {
+        event(new BeforeDumpEvent($builder));
+    }
+
+    /**
+     * @codeCoverageIgnore
+     *
+     * @param string $sql
+     * @param Builder $builder
+     */
+    protected function fireAfterEvent(string & $sql, Builder $builder): void
+    {
+        event(new AfterDumpEvent($sql, $builder));
     }
 
 

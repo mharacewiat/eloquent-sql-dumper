@@ -95,10 +95,12 @@ Other way of customizing `dump` macro is to register a [listener](https://larave
 Finally, you can modify macro name (in case it collides with existing one). To do so, adjust configuration option or put `ELOQUENT_SQL_DUMPER_MACRO` environment variable into your `.env` file.
 
 ```dotenv
-ELOQUENT_SQL_DUMPER_MACRO=fancy_dump
+ELOQUENT_SQL_DUMPER_MACRO=foo_bar_baz
 ```
 
 and then, use it the same way `dump` was shown in the [Usage](#Usage) chapter.
+
+> Macro name is **always** casted to [Camel case](https://en.wikipedia.org/wiki/Camel_case). In this example above, your macro will be executed by `$query->fooBarBaz`.
 
 ## Contribute
 

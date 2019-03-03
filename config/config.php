@@ -11,6 +11,6 @@ return [
     |
     */
 
-    'macro' => env('ELOQUENT_SQL_DUMP_MACRO', 'dump'),
+    'macro' => env('ELOQUENT_SQL_DUMPER_MACRO', 'dump'),
 
 ];
