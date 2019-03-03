@@ -41,7 +41,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register(DumperContract $dumper)
     {
-        Builder::macro('dump', function () use ($dumper) {
+        Builder::macro(config('eloquent-sql-dump.macro'), function () use ($dumper) {
             /** @var Builder $this */
             return $dumper->dump($this);
         });
